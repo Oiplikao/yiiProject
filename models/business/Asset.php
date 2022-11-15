@@ -6,7 +6,7 @@ use yii\base\Model;
 
 abstract class Asset extends Model implements AssetInterface
 {
-    public string $name;
+    public string $name = '';
 
     public function getName(): string
     {

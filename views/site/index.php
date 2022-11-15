@@ -3,8 +3,10 @@
 /** @var yii\web\View $this */
 /** @var \app\models\page\IndexModel $model */
 
+use yii\bootstrap5\Html;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 $this->title = 'My Yii Application';
 ?>
@@ -29,6 +31,16 @@ $this->title = 'My Yii Application';
                 ]
             ]
         ]) ?>
+
+        <div class="form-group">
+            <form method="get" action="<?= $a = Url::to(['site/create'])?>">
+                <div class="col-lg-offset-1 col-lg-11">
+                    <?= Html::submitButton('Добавить актив', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::hiddenInput(Yii::$app->urlManager->routeParam, 'site/create')?>
+                    <?= Html::dropDownList('assetType', reset($model->assetTypes), array_combine($model->assetTypes, $model->assetTypes)) ?>
+                </div>
+            </form>
+        </div>
 
     </div>
 </div>

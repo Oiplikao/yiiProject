@@ -7,6 +7,8 @@ use app\models\page\AssetSingleModel;
 use app\models\page\IndexModel;
 use app\views\site\assets\AssetHtmlRendererFactory;
 use yii\data\ArrayDataProvider;
+use yii\helpers\ArrayHelper;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
 class SiteController extends Controller
@@ -49,6 +51,7 @@ class SiteController extends Controller
             $assetHtmlRendererFactory = new AssetHtmlRendererFactory();
             $assetHtmlRenderer = $assetHtmlRendererFactory->getRendererFor($asset);
             $assetHtmlRenderer->fillModel($asset, \Yii::$app->request->post());
+            //todo: save model
         }
         $model = new AssetSingleModel();
         $model->model = $asset;
@@ -57,9 +60,26 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionCreate($assetClass)
+    public function actionCreate($assetType)
     {
-
+        $assetHtmlRendererFactory = new AssetHtmlRendererFactory();
+        $assetTypes = $assetHtmlRendererFactory->getSupportedAssets();
+        $assetClass = ArrayHelper::getValue(array_flip($assetTypes), $assetType, null);
+        if(!$assetClass) {
+            throw new BadRequestHttpException();
+        }
+        $asset = new $assetClass;
+        if(\Yii::$app->request->isPost) {
+            $assetHtmlRendererFactory = new AssetHtmlRendererFactory();
+            $assetHtmlRenderer = $assetHtmlRendererFactory->getRendererFor($asset);
+            $assetHtmlRenderer->fillModel($asset, \Yii::$app->request->post());
+            //todo: save model
+        }
+        $model = new AssetSingleModel();
+        $model->model = $asset;
+        return $this->render('update', [
+            'model' => $model
+        ]);
     }
 
     public function actionDelete($id)

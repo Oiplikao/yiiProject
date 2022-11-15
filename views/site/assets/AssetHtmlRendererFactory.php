@@ -21,7 +21,8 @@ class AssetHtmlRendererFactory
 
     public function getSupportedAssets()
     {
-        return array_map(function($class) { return $class::getType(); } , array_keys(self::$renderers));
+        $assetClasses = array_keys(self::$renderers);
+        return array_combine($assetClasses, array_map(function($class) { return $class::getType(); }, $assetClasses));
     }
 
     public function getRendererFor(Asset $asset) : AssetHtmlRenderer
