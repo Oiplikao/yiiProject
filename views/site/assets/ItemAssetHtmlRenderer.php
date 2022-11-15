@@ -20,7 +20,7 @@ class ItemAssetHtmlRenderer extends AssetHtmlRenderer
 
     public function getFields(Asset $asset, ActiveForm $form): string
     {
-        $activeFormHelper = new ActiveFormHelper($form);
+        $formHelper = new ActiveFormHelper($form);
         ob_start();
         assert($asset instanceof ItemAsset);
         ?>
@@ -30,16 +30,13 @@ class ItemAssetHtmlRenderer extends AssetHtmlRenderer
 
         <h3>Оценка стоимости</h3>
         <h4>Начальная стоимость</h4>
-        <?= $activeFormHelper->subField($asset, 'acquisitionCost', 'units') ?>
-        <?= $activeFormHelper->subField($asset, 'acquisitionCost', 'currency') ?>
+        <?= $formHelper->moneyInput($asset, 'acquisitionCost')?>
 
         <h4>Остаточная стоимость</h4>
-        <?= $activeFormHelper->subField($asset, 'carryingCost', 'units') ?>
-        <?= $activeFormHelper->subField($asset, 'carryingCost', 'currency') ?>
+        <?= $formHelper->moneyInput($asset, 'carryingCost')?>
 
         <h4>Рыночная стоимость</h4>
-        <?= $activeFormHelper->subField($asset, 'marketValue', 'units') ?>
-        <?= $activeFormHelper->subField($asset, 'marketValue', 'currency') ?>
+        <?= $formHelper->moneyInput($asset, 'marketValue')?>
         <?php
         return ob_get_clean();
     }

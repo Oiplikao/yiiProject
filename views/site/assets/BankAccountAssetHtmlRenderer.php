@@ -4,12 +4,12 @@
 namespace app\views\site\assets;
 
 
+use app\models\ActiveFormHelper;
 use app\models\business\Asset;
 use app\models\business\BankAccountAsset;
 use app\models\business\Currency;
 use app\models\business\Money;
 use yii\bootstrap5\ActiveForm;
-use yii\bootstrap5\Html;
 
 class BankAccountAssetHtmlRenderer extends AssetHtmlRenderer
 {
@@ -20,18 +20,14 @@ class BankAccountAssetHtmlRenderer extends AssetHtmlRenderer
      */
     public function getFields(Asset $asset, ActiveForm $form): string
     {
+        $formHelper = new ActiveFormHelper($form);
         ob_start();
         assert($asset instanceof BankAccountAsset);
         ?>
         <?= $form->field($asset, 'name') ?>
         <?= $form->field($asset, 'bankID') ?>
         <?= $form->field($asset, 'accountNumber') ?>
-        <?= $form->field($asset->moneyValue, 'units')->textInput([
-            'name' => Html::getInputName($asset, 'moneyValue') . '[units]'
-        ]); ?>
-        <?= $form->field($asset->moneyValue, 'currency')->textInput([
-            'name' => Html::getInputName($asset, 'moneyValue') . '[currency]'
-        ]); ?>
+        <?= $formHelper->moneyInput($asset, 'moneyValue') ?>
         <?php
         return ob_get_clean();
     }

@@ -82,3 +82,24 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.money-field-group {
+    display: flex;
+    column-gap: 1em;
+    min-width: 40%;
+}
+
+.money-field-group .money-currency {
+    flex-basis: min-content;
+}
+
+.money-field-group .money-currency input {
+    text-align: center;
+}
+
+.money-field-group .money-value {
+
+}
+
+
+

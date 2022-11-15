@@ -21,7 +21,7 @@ class BuildingAssetHtmlRenderer extends AssetHtmlRenderer
      */
     public function getFields(Asset $asset, ActiveForm $form): string
     {
-        $activeFormHelper = new ActiveFormHelper($form);
+        $formHelper = new ActiveFormHelper($form);
         ob_start();
         assert($asset instanceof BuildingAsset);
         ?>
@@ -32,24 +32,21 @@ class BuildingAssetHtmlRenderer extends AssetHtmlRenderer
         <?= $form->field($asset, 'inventoryNumber') ?>
 
         <h3>Адрес</h3>
-        <?= $activeFormHelper->subField($asset, 'address', 'country') ?>
-        <?= $activeFormHelper->subField($asset, 'address', 'city') ?>
-        <?= $activeFormHelper->subField($asset, 'address', 'street') ?>
-        <?= $activeFormHelper->subField($asset, 'address', 'house') ?>
-        <?= $activeFormHelper->subField($asset, 'address', 'apartment') ?>
+        <?= $formHelper->subField($asset, 'address', 'country') ?>
+        <?= $formHelper->subField($asset, 'address', 'city') ?>
+        <?= $formHelper->subField($asset, 'address', 'street') ?>
+        <?= $formHelper->subField($asset, 'address', 'house') ?>
+        <?= $formHelper->subField($asset, 'address', 'apartment') ?>
 
         <h3>Оценка стоимости</h3>
         <h4>Начальная стоимость</h4>
-        <?= $activeFormHelper->subField($asset, 'acquisitionCost', 'units') ?>
-        <?= $activeFormHelper->subField($asset, 'acquisitionCost', 'currency') ?>
+        <?= $formHelper->moneyInput($asset, 'acquisitionCost') ?>
 
         <h4>Оценочная стоимость</h4>
-        <?= $activeFormHelper->subField($asset, 'estimatedValue', 'units') ?>
-        <?= $activeFormHelper->subField($asset, 'estimatedValue', 'currency') ?>
+        <?= $formHelper->moneyInput($asset, 'estimatedValue') ?>
 
         <h4>Остаточная стоимость</h4>
-        <?= $activeFormHelper->subField($asset, 'carryingCost', 'units') ?>
-        <?= $activeFormHelper->subField($asset, 'carryingCost', 'currency') ?>
+        <?= $formHelper->moneyInput($asset, 'carryingCost') ?>
 
         <?php
         return ob_get_clean();
