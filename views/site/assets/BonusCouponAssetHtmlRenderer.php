@@ -9,18 +9,20 @@ use app\models\business\Asset;
 use app\models\business\BonusCouponsAsset;
 use app\models\business\Currency;
 use app\models\business\Money;
+use app\models\page\AssetSingleModel;
 use yii\bootstrap5\ActiveForm;
 
 class BonusCouponAssetHtmlRenderer extends AssetHtmlRenderer
 {
-    public function getFields(Asset $asset, ActiveForm $form): string
+    public function getFields(AssetSingleModel $model, ActiveForm $form): string
     {
+        $asset = $model->model;
         $formHelper = new ActiveFormHelper($form);
         ob_start();
         assert($asset instanceof BonusCouponsAsset);
         ?>
         <?= $form->field($asset, 'name') ?>
-        <?= $formHelper->moneyInput($asset, 'moneyValue') ?>
+        <?= $formHelper->moneyInput($asset, 'moneyValue', $model->supportedCurrencies) ?>
         <?php
         return ob_get_clean();
     }

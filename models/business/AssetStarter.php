@@ -45,7 +45,8 @@ class AssetStarter
                 'carryingCost' => new Money(5000, new Currency('RUB')),
             ]),
             new ItemAsset([
-                'name' => '100 килограммов гвоздей',
+                'name' => 'Гвозди',
+                'quantity' => new Quantity(100, Quantity::MEASURE_KILOGRAM),
                 'productionDate' => new \DateTime('2000'),
                 'acquisitionCost' => new Money(100000, new Currency('RUB')),
                 'carryingCost' => new Money(10000, new Currency('RUB')),

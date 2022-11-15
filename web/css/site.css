@@ -83,22 +83,22 @@ a.desc:after {
     outline: none;
 }
 
-.money-field-group {
+.field-group {
     display: flex;
     column-gap: 1em;
     min-width: 40%;
 }
 
-.money-field-group .money-currency {
-    flex-basis: min-content;
-}
-
-.money-field-group .money-currency input {
+.field-group .money-currency input {
     text-align: center;
+    box-sizing: content-box;
+    width: 4ch;
 }
 
-.money-field-group .money-value {
-
+.field-group .quantity-measureUnit input {
+    text-align: center;
+    box-sizing: content-box;
+    width: 5ch;
 }
 
 

@@ -6,6 +6,7 @@ namespace app\models\business;
 class ItemAsset extends Asset implements ComplexMoneyValueInterface, HasProductionDateInterface
 {
     public \DateTime $productionDate;
+    public Quantity $quantity;
     public string $productionDateFormat = 'Y';
     public Money $acquisitionCost;
     public Money $carryingCost;

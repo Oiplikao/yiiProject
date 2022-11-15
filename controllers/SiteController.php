@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\business\AssetStarter;
+use app\models\business\Currency;
 use app\models\page\AssetSingleModel;
 use app\models\page\IndexModel;
 use app\views\site\assets\AssetHtmlRendererFactory;
@@ -55,6 +56,7 @@ class SiteController extends Controller
         }
         $model = new AssetSingleModel();
         $model->model = $asset;
+        $model->supportedCurrencies = Currency::getSupportedCurrencies();
         return $this->render('update', [
             'model' => $model
         ]);
@@ -77,6 +79,7 @@ class SiteController extends Controller
         }
         $model = new AssetSingleModel();
         $model->model = $asset;
+        $model->supportedCurrencies = Currency::getSupportedCurrencies();
         return $this->render('update', [
             'model' => $model
         ]);

@@ -10,17 +10,19 @@ use app\models\business\Asset;
 use app\models\business\BuildingAsset;
 use app\models\business\Currency;
 use app\models\business\Money;
+use app\models\page\AssetSingleModel;
 use yii\bootstrap5\ActiveForm;
 
 class BuildingAssetHtmlRenderer extends AssetHtmlRenderer
 {
     /**
+     * @param AssetSingleModel $model
      * @param ActiveForm $form
-     * @param BuildingAsset $asset
      * @return string
      */
-    public function getFields(Asset $asset, ActiveForm $form): string
+    public function getFields(AssetSingleModel $model, ActiveForm $form): string
     {
+        $asset = $model->model;
         $formHelper = new ActiveFormHelper($form);
         ob_start();
         assert($asset instanceof BuildingAsset);
@@ -40,13 +42,13 @@ class BuildingAssetHtmlRenderer extends AssetHtmlRenderer
 
         <h3>Оценка стоимости</h3>
         <h4>Начальная стоимость</h4>
-        <?= $formHelper->moneyInput($asset, 'acquisitionCost') ?>
+        <?= $formHelper->moneyInput($asset, 'acquisitionCost', $model->supportedCurrencies) ?>
 
         <h4>Оценочная стоимость</h4>
-        <?= $formHelper->moneyInput($asset, 'estimatedValue') ?>
+        <?= $formHelper->moneyInput($asset, 'estimatedValue', $model->supportedCurrencies) ?>
 
         <h4>Остаточная стоимость</h4>
-        <?= $formHelper->moneyInput($asset, 'carryingCost') ?>
+        <?= $formHelper->moneyInput($asset, 'carryingCost', $model->supportedCurrencies) ?>
 
         <?php
         return ob_get_clean();

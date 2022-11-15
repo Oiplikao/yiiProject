@@ -20,7 +20,7 @@ $asset = $model->model;
 $rendererFactory = new AssetHtmlRendererFactory();
 
 $renderer = $rendererFactory->getRendererFor($asset);
-echo $renderer->getFields($asset, $form);
+echo $renderer->getFields($model, $form);
 ?>
 
 <div class="form-group">

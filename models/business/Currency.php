@@ -31,6 +31,11 @@ class Currency
         ];
     }
 
+    public static function getSupportedCurrencies()
+    {
+        return array_keys(self::getDefinitions());
+    }
+
     public function format($units)
     {
         $definition = static::getDefinitions()[$this->code];

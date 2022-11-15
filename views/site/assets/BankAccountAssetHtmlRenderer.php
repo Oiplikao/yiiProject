@@ -9,17 +9,20 @@ use app\models\business\Asset;
 use app\models\business\BankAccountAsset;
 use app\models\business\Currency;
 use app\models\business\Money;
+use app\models\page\AssetSingleModel;
 use yii\bootstrap5\ActiveForm;
 
 class BankAccountAssetHtmlRenderer extends AssetHtmlRenderer
 {
     /**
+     * @param AssetSingleModel $model
+     * @param AssetSingleModel $form
      * @param ActiveForm $form
-     * @param BankAccountAsset $asset
      * @return string
      */
-    public function getFields(Asset $asset, ActiveForm $form): string
+    public function getFields(AssetSingleModel $model, ActiveForm $form): string
     {
+        $asset = $model->model;
         $formHelper = new ActiveFormHelper($form);
         ob_start();
         assert($asset instanceof BankAccountAsset);
@@ -27,7 +30,7 @@ class BankAccountAssetHtmlRenderer extends AssetHtmlRenderer
         <?= $form->field($asset, 'name') ?>
         <?= $form->field($asset, 'bankID') ?>
         <?= $form->field($asset, 'accountNumber') ?>
-        <?= $formHelper->moneyInput($asset, 'moneyValue') ?>
+        <?= $formHelper->moneyInput($asset, 'moneyValue', $model->supportedCurrencies) ?>
         <?php
         return ob_get_clean();
     }
