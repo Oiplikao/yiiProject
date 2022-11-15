@@ -10,4 +10,5 @@ class AssetSingleModel
 {
     public Asset $model;
     public array $supportedCurrencies;
+    public bool $isNew = false;
 }

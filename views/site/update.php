@@ -23,10 +23,15 @@ $renderer = $rendererFactory->getRendererFor($asset);
 echo $renderer->getFields($model, $form);
 ?>
 
-<div class="form-group">
-    <div class="col-lg-offset-1 col-lg-11">
+<div class="form-group row">
+    <div class="col-auto me-auto">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
     </div>
+    <?php if(!$model->isNew) { ?>
+    <div class="col-auto">
+        <?= Html::submitButton('Удалить', ['class' => 'btn btn-danger', 'name' => 'delete', 'value' => 'true'])?>
+    </div>
+    <?php } ?>
 </div>
 
 <?php

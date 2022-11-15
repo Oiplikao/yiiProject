@@ -25,8 +25,9 @@ $this->title = 'My Yii Application';
                 'type',
                 [
                     'class' => ActionColumn::class,
-                    'buttons' => [
-                            'view' => function() { return ''; }
+                    'visibleButtons' => [
+                        'view' => false,
+                        'delete' => false
                     ]
                 ]
             ]

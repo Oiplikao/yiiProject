@@ -4,6 +4,7 @@
 namespace app\models\business;
 
 use app\models\Address;
+use yii\helpers\ArrayHelper;
 
 class AssetStarter
 {
@@ -30,6 +31,11 @@ class AssetStarter
             self::getAssets();
         }
         self::$assets[] = $asset;
+    }
+
+    static function deleteAsset(Asset $asset)
+    {
+        ArrayHelper::removeValue(self::$assets, $asset);
     }
 
     static function initAssets()

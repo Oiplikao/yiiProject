@@ -49,6 +49,11 @@ class SiteController extends Controller
         $assets = AssetStarter::getAssets();
         $asset = $assets[$id];
         if(\Yii::$app->request->isPost) {
+            if(!empty(\Yii::$app->request->post('delete'))) {
+                AssetStarter::deleteAsset($asset);
+                AssetStarter::saveAssets();
+                return $this->redirect(['site/index']);
+            }
             $assetHtmlRendererFactory = new AssetHtmlRendererFactory();
             $assetHtmlRenderer = $assetHtmlRendererFactory->getRendererFor($asset);
             $assetHtmlRenderer->fillModel($asset, \Yii::$app->request->post());
@@ -77,9 +82,11 @@ class SiteController extends Controller
             $assetHtmlRenderer->fillModel($asset, \Yii::$app->request->post());
             AssetStarter::addAsset($asset);
             AssetStarter::saveAssets();
+            return $this->redirect(['site/index']);
         }
         $model = new AssetSingleModel();
         $model->model = $asset;
+        $model->isNew = true;
         $model->supportedCurrencies = Currency::getSupportedCurrencies();
         return $this->render('update', [
             'model' => $model
