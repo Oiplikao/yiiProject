@@ -52,7 +52,7 @@ class SiteController extends Controller
             $assetHtmlRendererFactory = new AssetHtmlRendererFactory();
             $assetHtmlRenderer = $assetHtmlRendererFactory->getRendererFor($asset);
             $assetHtmlRenderer->fillModel($asset, \Yii::$app->request->post());
-            //todo: save model
+            AssetStarter::saveAssets();
         }
         $model = new AssetSingleModel();
         $model->model = $asset;
@@ -75,7 +75,8 @@ class SiteController extends Controller
             $assetHtmlRendererFactory = new AssetHtmlRendererFactory();
             $assetHtmlRenderer = $assetHtmlRendererFactory->getRendererFor($asset);
             $assetHtmlRenderer->fillModel($asset, \Yii::$app->request->post());
-            //todo: save model
+            AssetStarter::addAsset($asset);
+            AssetStarter::saveAssets();
         }
         $model = new AssetSingleModel();
         $model->model = $asset;

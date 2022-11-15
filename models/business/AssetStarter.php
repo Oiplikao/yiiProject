@@ -7,7 +7,32 @@ use app\models\Address;
 
 class AssetStarter
 {
+    static $assets = [];
+
     static function getAssets(): array
+    {
+        self::$assets = unserialize(\Yii::$app->session->get('assets'));
+        if(empty(self::$assets)) {
+            \Yii::$app->session->set('assets', serialize(self::initAssets()));
+            self::$assets = unserialize(\Yii::$app->session->get('assets'));
+        }
+        return self::$assets;
+    }
+
+    static function saveAssets()
+    {
+        \Yii::$app->session->set('assets', serialize(self::$assets));
+    }
+
+    static function addAsset(Asset $asset)
+    {
+        if(empty(self::$assets)) {
+            self::getAssets();
+        }
+        self::$assets[] = $asset;
+    }
+
+    static function initAssets()
     {
         return [
             new BankAccountAsset([
