@@ -35,10 +35,16 @@ $this->title = 'My Yii Application';
 
         <div class="form-group">
             <form method="get" action="<?= $a = Url::to(['site/create'])?>">
-                <div class="col-lg-offset-1 col-lg-11">
-                    <?= Html::submitButton('Добавить актив', ['class' => 'btn btn-primary']) ?>
-                    <?= Html::hiddenInput(Yii::$app->urlManager->routeParam, 'site/create')?>
-                    <?= Html::dropDownList('assetType', reset($model->assetTypes), array_combine($model->assetTypes, $model->assetTypes)) ?>
+                <div class="row">
+                    <div class="col-auto">
+                        <?= Html::submitButton('Добавить актив', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::hiddenInput(Yii::$app->urlManager->routeParam, 'site/create')?>
+                    </div>
+                    <div class="col-auto">
+                        <?= Html::dropDownList('assetType', reset($model->assetTypes), array_combine($model->assetTypes, $model->assetTypes), [
+                            'class' => 'form-select'
+                        ]) ?>
+                    </div>
                 </div>
             </form>
         </div>
