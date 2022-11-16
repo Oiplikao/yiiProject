@@ -16,7 +16,6 @@ class BankAccountAssetHtmlRenderer extends AssetHtmlRenderer
 {
     /**
      * @param AssetSingleModel $model
-     * @param AssetSingleModel $form
      * @param ActiveForm $form
      * @return string
      */

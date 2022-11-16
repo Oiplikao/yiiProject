@@ -21,7 +21,7 @@ class ItemAsset extends Asset implements ComplexMoneyValueInterface, HasProducti
     public function init()
     {
         if(empty($this->productionDate)) {
-            $this->productionDate = new \DateTime(0);
+            $this->productionDate = new \DateTime('now');
         }
         if(empty($this->acquisitionCost)) {
             $this->acquisitionCost = new Money(0, new Currency('RUB'));

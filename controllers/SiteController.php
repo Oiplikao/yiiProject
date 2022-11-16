@@ -47,6 +47,7 @@ class SiteController extends Controller
     public function actionUpdate($id)
     {
         $assets = AssetStarter::getAssets();
+        /** @var Asset $asset */
         $asset = $assets[$id];
         if(\Yii::$app->request->isPost) {
             if(!empty(\Yii::$app->request->post('delete'))) {
@@ -75,6 +76,7 @@ class SiteController extends Controller
         if(!$assetClass) {
             throw new BadRequestHttpException();
         }
+        /** @var Asset $asset */
         $asset = new $assetClass;
         if(\Yii::$app->request->isPost) {
             $assetHtmlRendererFactory = new AssetHtmlRendererFactory();

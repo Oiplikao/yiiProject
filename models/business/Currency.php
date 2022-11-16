@@ -2,13 +2,16 @@
 
 namespace app\models\business;
 
-class Currency
+use yii\base\Model;
+
+class Currency extends Model
 {
     public $code;
 
-    public function __construct(string $code)
+    public function __construct(string $code, $config = [])
     {
         $this->code = $code;
+        parent::__construct($config);
     }
 
     public static function getDefinitions()

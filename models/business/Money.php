@@ -6,8 +6,8 @@ use yii\base\Model;
 
 class Money extends Model
 {
-    private int $units;
-    private Currency $currency;
+    public int $units;
+    public Currency $currency;
 
     public function __construct(int $units, Currency $currency, $config = [])
     {
@@ -24,10 +24,5 @@ class Money extends Model
     public function getValue(): string
     {
         return $this->currency->format($this->units);
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency->code;
     }
 }
