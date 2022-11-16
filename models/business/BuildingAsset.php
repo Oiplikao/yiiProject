@@ -3,6 +3,7 @@
 namespace app\models\business;
 
 use app\models\Address;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class BuildingAsset
@@ -90,5 +91,13 @@ class BuildingAsset extends Asset implements ComplexMoneyValueInterface, HasInve
     public function getInventoryNumber() : string
     {
         return $this->inventoryNumber;
+    }
+
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'productionDateFormatted' => 'Дата постройки',
+            'inventoryNumber' => 'Инвентарный номер'
+        ]);
     }
 }

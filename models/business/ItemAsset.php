@@ -3,6 +3,8 @@
 
 namespace app\models\business;
 
+use yii\helpers\ArrayHelper;
+
 class ItemAsset extends Asset implements ComplexMoneyValueInterface, HasProductionDateInterface
 {
     public \DateTime $productionDate;
@@ -76,5 +78,12 @@ class ItemAsset extends Asset implements ComplexMoneyValueInterface, HasProducti
     public function getMarketValue() : ?Money
     {
         return $this->marketValue;
+    }
+
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'productionDateFormatted' => 'Дата постройки',
+        ]);
     }
 }

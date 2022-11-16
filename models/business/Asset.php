@@ -14,4 +14,12 @@ abstract class Asset extends Model implements AssetInterface
     }
 
     public abstract static function getType() : string;
+
+    public function attributeLabels()
+    {
+        return [
+            'name' => 'Название',
+            'type' => 'Тип'
+        ];
+    }
 }

@@ -27,4 +27,12 @@ class Quantity extends Model
         'kg' => 'кг',
         'm' => 'м'
     ];
+
+    public function attributeLabels()
+    {
+        return [
+            'measureUnit' => 'Единица измерения',
+            'value' => 'Значение'
+        ];
+    }
 }

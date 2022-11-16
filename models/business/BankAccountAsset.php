@@ -2,6 +2,8 @@
 
 namespace app\models\business;
 
+use yii\helpers\ArrayHelper;
+
 class BankAccountAsset extends Asset implements FixedMoneyValueInterface
 {
     public string $accountNumber = '';
@@ -28,5 +30,13 @@ class BankAccountAsset extends Asset implements FixedMoneyValueInterface
     public function getMoneyValue(): Money
     {
         return $this->moneyValue;
+    }
+
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'accountNumber' => 'Номер счёта',
+            'bankID' => 'Название банка'
+        ]);
     }
 }

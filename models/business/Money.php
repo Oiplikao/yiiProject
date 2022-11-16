@@ -16,6 +16,15 @@ class Money extends Model
         parent::__construct($config);
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'units' => 'Минимальные единицы валюты',
+            'currency' => 'Валюта',
+            'value' => 'Значение'
+        ];
+    }
+
     public function setValue(string $value)
     {
         $this->units = $this->currency->unitsFromString($value);
