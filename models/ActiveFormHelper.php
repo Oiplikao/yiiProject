@@ -30,8 +30,8 @@ class ActiveFormHelper
         ob_start();
         ?>
         <div class="field-group mb-3 ">
-            <?= $this->form->field($model->$moneyAttributeName, 'units', ['options' => ['class' => 'money-value']])
-                ->textInput(['name' => Html::getInputName($model, $moneyAttributeName) . '[units]']); ?>
+            <?= $this->form->field($model->$moneyAttributeName, 'value', ['options' => ['class' => 'money-value']])
+                ->textInput(['name' => Html::getInputName($model, $moneyAttributeName) . '[value]']); ?>
             <?= $this->form->field($model->$moneyAttributeName, 'currency', ['options' => ['class' => 'money-currency']])
                 ->dropDownList(
                     array_combine($supportedCurrencies, $supportedCurrencies),

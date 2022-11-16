@@ -16,12 +16,12 @@ class Money extends Model
         parent::__construct($config);
     }
 
-    public function getUnits(): int
+    public function setValue(string $value)
     {
-        return $this->units;
+        $this->units = $this->currency->unitsFromString($value);
     }
 
-    public function getValue(): string
+    public function getValue() : string
     {
         return $this->currency->format($this->units);
     }

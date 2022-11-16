@@ -38,6 +38,7 @@ class MoneyAssetHtmlRenderer extends AssetHtmlRenderer
         $assetData = $formData[$asset->formName()];
         $asset->name = $assetData['name'];
         $moneyData = $assetData['moneyValue'];
-        $asset->moneyValue = new Money($moneyData['units'], new Currency($moneyData['currency']));
+        $asset->moneyValue = new Money(0, new Currency($moneyData['currency']));
+        $asset->moneyValue->setValue($moneyData['value']);
     }
 }

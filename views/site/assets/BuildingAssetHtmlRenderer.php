@@ -65,12 +65,15 @@ class BuildingAssetHtmlRenderer extends AssetHtmlRenderer
         $addressData = $assetData['address'];
         $asset->address = new Address($addressData);
         $acquisitionCostData = $assetData['acquisitionCost'];
-        $asset->acquisitionCost = new Money($acquisitionCostData['units'], new Currency($acquisitionCostData['currency']));
+        $asset->acquisitionCost = new Money(0, new Currency($acquisitionCostData['currency']));
+        $asset->acquisitionCost->setValue($acquisitionCostData['value']);
 
         $estimatedValueData = $assetData['estimatedValue'];
-        $asset->estimatedValue = new Money($estimatedValueData['units'], new Currency($estimatedValueData['currency']));
+        $asset->estimatedValue = new Money(0, new Currency($estimatedValueData['currency']));
+        $asset->estimatedValue->setValue($estimatedValueData['value']);
 
         $carryingCostData = $assetData['carryingCost'];
-        $asset->carryingCost = new Money($carryingCostData['units'], new Currency($carryingCostData['currency']));
+        $asset->carryingCost = new Money(0, new Currency($carryingCostData['currency']));
+        $asset->carryingCost->setValue($carryingCostData['value']);
     }
 }

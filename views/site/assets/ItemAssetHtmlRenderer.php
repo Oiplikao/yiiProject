@@ -54,12 +54,15 @@ class ItemAssetHtmlRenderer extends AssetHtmlRenderer
         $asset->quantity->value = $assetData['quantity']['value'];
 
         $acquisitionCostData = $assetData['acquisitionCost'];
-        $asset->acquisitionCost = new Money($acquisitionCostData['units'], new Currency($acquisitionCostData['currency']));
+        $asset->acquisitionCost = new Money(0, new Currency($acquisitionCostData['currency']));
+        $asset->acquisitionCost->setValue($acquisitionCostData['value']);
 
         $carryingCostData = $assetData['carryingCost'];
-        $asset->estimatedValue = new Money($carryingCostData['units'], new Currency($carryingCostData['currency']));
+        $asset->estimatedValue = new Money(0, new Currency($carryingCostData['currency']));
+        $asset->estimatedValue->setValue($carryingCostData['value']);
 
         $marketValueData = $assetData['marketValue'];
-        $asset->marketValue = new Money($marketValueData['units'], new Currency($marketValueData['currency']));
+        $asset->marketValue = new Money(0, new Currency($marketValueData['currency']));
+        $asset->marketValue->setValue($marketValueData['value']);
     }
 }

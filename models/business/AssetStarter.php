@@ -71,9 +71,9 @@ class AssetStarter
                     'street' => 'Бассейная',
                     'house' => '6'
                 ]),
-                'acquisitionCost' => new Money(10000, new Currency('RUB')),
-                'estimatedValue' => new Money(100000, new Currency('RUB')),
-                'carryingCost' => new Money(5000, new Currency('RUB')),
+                'acquisitionCost' => new Money(3000000, new Currency('RUB')),
+                'estimatedValue' => new Money(100000000, new Currency('RUB')),
+                'carryingCost' => new Money(500000, new Currency('RUB')),
             ]),
             new ItemAsset([
                 'name' => 'Гвозди',
